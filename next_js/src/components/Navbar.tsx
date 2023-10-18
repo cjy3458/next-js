@@ -6,16 +6,27 @@ export default function NavBar() {
   const router = useRouter();
 
   return (
-    // css 모듈 패턴이기 때문에 styles.nav 형식으로 사용!
-    <nav>
+    <div>
       <Link href="/">
-        <p className={router.pathname === "/" ? styles.active : ""}>Home</p>
+        <p
+          className={[
+            styles.link,
+            router.pathname === "/" ? styles.active : "",
+          ].join(" ")}
+        >
+          Home
+        </p>
       </Link>
       <Link href="/about">
-        <p className={router.pathname === "/about" ? styles.active : ""}>
+        <p
+          className={[
+            styles.link,
+            router.pathname === "/about" ? styles.active : "",
+          ].join(" ")}
+        >
           About
         </p>
       </Link>
-    </nav>
+    </div>
   );
 }
