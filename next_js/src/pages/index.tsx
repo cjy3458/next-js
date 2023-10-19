@@ -1,19 +1,35 @@
-//index 내에 코드는 항상 "/" 에서 렌더링
-// index는 default로 "/"로 지정됨
+import { useEffect, useState } from "react";
+import Seo from "../components/Seo";
 
-import NavBar from "@/components/Navbar";
-import { useState } from "react";
-import Head from "next/head";
-import Seo from "@/components/Seo";
+const API_KEY = "10923b261ba94d897ac6b81148314a3f";
+
+interface Movie {
+  id: number;
+  original_title: string;
+}
 
 export default function Home() {
-  const [count, setCount] = useState(0);
+  const [movies, setMovies] = useState<Movie[] | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+      );
+      const data = await response.json();
+      setMovies(data.results);
+    })();
+  }, []);
 
   return (
     <div>
       <Seo title="Home" />
-      <h1>민병록 {count}</h1>
-      <button onClick={() => setCount((prev) => prev + 1)}>Plus</button>
+      {!movies && <h4>Loading...</h4>}
+      {movies?.map((movie) => (
+        <div key={movie.id}>
+          <h4>{movie.original_title}</h4>
+        </div>
+      ))}
     </div>
   );
 }
