@@ -4,13 +4,14 @@
 import NavBar from "@/components/Navbar";
 import { useState } from "react";
 import Head from "next/head";
+import Seo from "@/components/Seo";
 
 export default function Home() {
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <Head>Next Project</Head>
+      <Seo title="Home" />
       <h1>민병록 {count}</h1>
       <button onClick={() => setCount((prev) => prev + 1)}>Plus</button>
     </div>
