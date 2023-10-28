@@ -24,6 +24,7 @@ module.exports = nextConfig;
 // 유저가 어딘가로 이동하면 form이라는 destination을 보낸다.
 // redirection이 영구적인지 아닌지에 따라서 정보 기억 여부 결정
 // 리다이렉트는 특정 url로 가면 다른 특정 url로 이동할 수 있도록 하는 것
+// 사실 .env 파일 만들어서 사용하는게 제일 편하다.
 
 /*async redirects() {
   return [
