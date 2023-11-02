@@ -15,14 +15,14 @@ interface HomeProps {
 export default function Home({ results }: HomeProps) {
   const [movies, setMovies] = useState<Movie[] | null>(null);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await fetch(`api/movies`);
-  //     const data = await response.json();
-  //     setMovies(data.results);
-  //     console.log(data.results);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`api/movies`);
+      const data = await response.json();
+      setMovies(data.results);
+      console.log(data.results);
+    })();
+  }, []);
 
   return (
     <div className="container">
@@ -70,14 +70,14 @@ export default function Home({ results }: HomeProps) {
   );
 }
 
-export async function getServerSideProps() {
-  const { results } = await (
-    await fetch(`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/movies`)
-  ).json();
+// export async function getServerSideProps() {
+//   const { results } = await (
+//     await fetch(`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/movies`)
+//   ).json();
 
-  return {
-    props: {
-      results,
-    },
-  };
-}
+//   return {
+//     props: {
+//       results,
+//     },
+//   };
+// }
